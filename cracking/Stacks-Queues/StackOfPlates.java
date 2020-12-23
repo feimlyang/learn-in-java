@@ -1,0 +1,7 @@
+/**
+ * StackOfPlates:
+ */
+public class StackOfPlates {
+
+    
+}
