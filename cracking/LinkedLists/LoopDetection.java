@@ -21,12 +21,37 @@ public class LoopDetection {
     }
 
     public static Node detectLoop(Node head){
-        //TODO
-        return head;
+        Node slowRunner = head, fastRunner = head;
+        do{
+            if (fastRunner == null || fastRunner.next == null) return null;
+            slowRunner = slowRunner.next;
+            fastRunner = fastRunner.next.next;
+        }
+        while (fastRunner != slowRunner);
+
+        slowRunner = head;
+        while (slowRunner != fastRunner){
+            slowRunner = slowRunner.next;
+            fastRunner = fastRunner.next;
+        }
+        return slowRunner;
     }
 
     public static void main(String[] args) {
+        Node head = new Node(3);
+        Node node1 = new Node(4);
+        Node node2 = new Node(5);
+        Node node3 = new Node(6);
+        Node node4 = new Node(7);
+
+        head.next = node1;
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node1;
         
+        System.out.println(detectLoop(head) == node1);
+
     }
     
 }
