@@ -50,7 +50,7 @@ public class StackOfPlates {
             stack.push(i);
         }
         for (int i = 0; i < 42; i++){
-            System.out.print(stack.pop() + " <- ");
+            System.out.print(stack.pop() + " -> ");
         }
         System.out.println("END");
     }
