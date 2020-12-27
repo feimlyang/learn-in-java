@@ -18,7 +18,7 @@ public class RouteBetweenNodes {
             v = queue.removeFirst();
             if (v == end) return true;
             G.getAdj(v).forEach(i -> {
-                if (isVisited[i] == false){
+                if (!isVisited[i]){
                     queue.add(i);
                     isVisited[i] = true;
                 }
@@ -26,6 +26,25 @@ public class RouteBetweenNodes {
         }
         return false;
     }
+
+
+    public static boolean searchRouteDFS(Graph G, int start, int end){
+        boolean[] isVisited = new boolean[G.getNumOfVertices()];
+        return dfs(G, start, end, isVisited);
+    }
+    private static boolean dfs(Graph G, int v, int end, boolean[] isVisited){
+        isVisited[v] = true;
+        if (v == end) return true;
+        for (int i : G.getAdj(v)){
+            if (!isVisited[i]){
+                boolean isFound = false;
+                isFound = dfs(G, i, end, isVisited);
+                if (isFound) return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
         Graph G = new Graph(10);
@@ -43,6 +62,13 @@ public class RouteBetweenNodes {
         System.out.println(searchRouteBFS(G, 3, 2) == true);
         System.out.println(searchRouteBFS(G, 3, 5) == false);
         System.out.println(searchRouteBFS(G, 6, 5) == false);
+
+        System.out.println(searchRouteDFS(G, 1, 4) == true);
+        System.out.println(searchRouteDFS(G, 0, 3) == true);
+        System.out.println(searchRouteDFS(G, 0, 0) == true);
+        System.out.println(searchRouteDFS(G, 3, 2) == true);
+        System.out.println(searchRouteDFS(G, 3, 5) == false);
+        System.out.println(searchRouteDFS(G, 6, 5) == false);
     }
 
     
