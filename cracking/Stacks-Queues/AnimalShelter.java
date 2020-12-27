@@ -84,6 +84,9 @@ public class AnimalShelter {
         shelter.printAddress();
         System.out.println(shelter.dequeueDog().toString());
         shelter.printAddress();
+
+        shelter.enqueue(new Dog());
+        shelter.printAddress();
     
     }
 
