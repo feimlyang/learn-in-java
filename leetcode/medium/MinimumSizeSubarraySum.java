@@ -3,7 +3,7 @@
 
 Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
 
-Note: Two pointers
+Note: Sliding Window
 Move the right pointer until the sum is greater than or equal to the target.
 Move the left pointer if the sum is still greater than or equal to the target; otherwise continue moving the right pointer. 
 
